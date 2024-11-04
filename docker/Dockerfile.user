@@ -7,6 +7,9 @@ COPY package.json package-lock.json turbo.json ./
 COPY apps ./apps
 COPY packages ./packages
 
+ARG DATABASE_URL
+ENV DATABASE_URL=${DATABASE_URL}
+
 #install dependencies
 RUN npm install
 
