@@ -6,20 +6,22 @@ WORKDIR /usr/src/app
 
 COPY package.json package-lock.json turbo.json ./
 
-ENV DATABASE_URL=${DATABASE_URL}
+# ENV DATABASE_URL=${DATABASE_URL}
 
 COPY apps ./apps
 COPY packages ./packages
 
 
-ENV DATABASE_URL=${DATABASE_URL}
+# ENV DATABASE_URL=${DATABASE_URL}
 
 #install dependencies
 RUN npm install
 
+ENV DATABASE_URL=${DATABASE_URL}
+
 RUN cd packages/db && npx prisma generate && cd ../..
 
-ENV DATABASE_URL=${DATABASE_URL}
+# ENV DATABASE_URL=${DATABASE_URL}
 
 RUN npm run build:user
 
