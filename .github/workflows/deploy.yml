@@ -31,6 +31,8 @@ jobs:
           file: ./docker/Dockerfile.user
           push: true
           tags: ektavyas/user-app:latest
+          build-args: |
+            DATABASE_URL=${{ secrets.DATABASE_URL }}
 
       - name: Verify pushed image
         run: docker pull ektavyas/user-app:latest
@@ -45,4 +47,4 @@ jobs:
             sudo docker pull ektavyas/user-app:latest
             sudo docker stop user-app || true
             sudo docker rm user-app || true
-            sudo docker run -d --name user-app -p 3005:3000 ektavyas/user-app:latest
+            sudo docker run -d --name user-app -p 3005:3000  -e DATABASE_URL=${{ secrets.DATABASE_URL }} ektavyas/user-app:latest
