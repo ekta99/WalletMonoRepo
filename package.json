@@ -6,7 +6,8 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "start-user-app": "turbo build --filter=user"
+    "start-user-app": "turbo build --filter=user",
+    "db:generate": "cd packages/db && npx prisma generate && cd ../.."
   },
   "devDependencies": {
     "@repo/eslint-config": "*",
