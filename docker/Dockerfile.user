@@ -6,6 +6,8 @@ WORKDIR /usr/src/app
 
 COPY package.json package-lock.json turbo.json ./
 
+ENV DATABASE_URL=${DATABASE_URL}
+
 COPY apps ./apps
 COPY packages ./packages
 
@@ -19,6 +21,6 @@ RUN cd packages/db && npx prisma generate && cd ../..
 
 ENV DATABASE_URL=${DATABASE_URL}
 
-RUN npm run build
+RUN npm run build:user
 
 CMD ["npm","run","start-user-app"]
